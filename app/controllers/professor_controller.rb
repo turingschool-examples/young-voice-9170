@@ -1,6 +1,9 @@
 class ProfessorController < ApplicationController
   def index
-    # binding.pry
     @professors = Professor.all
+  end
+
+  def show
+    @professor = Professor.find(params[:id])
   end
 end
