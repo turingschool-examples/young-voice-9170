@@ -10,10 +10,10 @@ RSpec.describe "students index page", type: :feature do
     @snape = @malfoy.professors.create(name: "Severus Snape", age: 45, specialty: "Potions")
     @hagarid = @harry.professors.create(name: "Rubeus Hagrid", age: 38 , specialty: "Care of Magical Creatures")
     @lupin = @longbottom.professors.create(name: "Remus Lupin", age: 49 , specialty: "Defense Against The Dark Arts")
+    visit '/students'
   end
 
   scenario "visitor sees list of students names, and their number of professors" do
-    visit '/students'
     expect(current_path).to eq('/students')
     expect(page).to have_content(@harry.name)
     expect(page).to have_content(@malfoy.name)
@@ -21,5 +21,25 @@ RSpec.describe "students index page", type: :feature do
     expect(page).to have_content("Harry Potter: 2")
     expect(page).to have_content("Draco Malfoy: 1")
     expect(page).to have_content("Neville Longbottom: 1")
+  end
+
+  scenario "visitor sees information listed alphabetically" do
+    within('#student-0') do
+      expect(page).to have_content(@malfoy.name)
+      expect(page).to_not have_content(@harry.name)
+      expect(page).to_not have_content(@longbottom.name)
+    end
+
+    within('#student-1') do
+      expect(page).to_not have_content(@malfoy.name)
+      expect(page).to have_content(@harry.name)
+      expect(page).to_not have_content(@longbottom.name)
+    end
+
+    within('#student-2') do
+      expect(page).to_not have_content(@malfoy.name)
+      expect(page).to_not have_content(@harry.name)
+      expect(page).to have_content(@longbottom.name)
+    end
   end
 end

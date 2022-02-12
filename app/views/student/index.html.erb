@@ -1,5 +1,7 @@
 <h1> Students of Hogwarts </h1>
 
-<% @students.each do |student| %>
+<% @students.alphabetize.each_with_index do |student, index| %>
+  <div id="student-<%= index %>" >
   <h2> <%= student.name %>: <%= student.count_professors %> </h2>
+  </div>
 <% end %>

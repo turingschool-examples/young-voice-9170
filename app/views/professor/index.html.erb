@@ -1,7 +1,9 @@
 <h1> Professors of Hogwarts </h1>
 
-<% @professors.each do |professor| %>
+<% @professors.alphabetize.each_with_index do |professor, index| %>
+  <div id="professor-<%= index %>" >
   <h2> <%= professor.name %> </h2>
   <h2> <%= professor.age %> </h2>
   <h2> <%= professor.specialty %> </h2>
+  </div>
 <% end %>
