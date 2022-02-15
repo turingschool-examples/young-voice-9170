@@ -5,4 +5,8 @@ class Professor <ApplicationRecord
   validates_presence_of :name
   validates_presence_of :age
   validates_presence_of :specialty
+
+  def avg_student_age
+    students.average(:age)
+  end
 end
