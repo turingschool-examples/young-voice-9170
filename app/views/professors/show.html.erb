@@ -3,6 +3,7 @@
 <h2> Students: </h2>
 <% @students.each do |student| %>
   <ul> 
-    <li><p><%= student.name %></p></li>
+    <li><p><%= student.name %></p></li> 
+    <%= @professor.avg_student_age %>
   </ul>
 <% end  %>
