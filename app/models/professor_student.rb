@@ -1,3 +1,4 @@
 class ProfessorStudent <ApplicationRecord
+  
 
 end
